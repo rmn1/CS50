@@ -63,7 +63,6 @@ int main(void)
 
     // instantiate bricks
     initBricks(window);
-    int num_bricks = COLS * ROWS;
 
     // instantiate ball, centered in middle of window
     GOval ball = initBall(window);
@@ -86,6 +85,9 @@ int main(void)
     // set ball velocity on both axes
     double x_velocity = drand48()*0.09;
     double y_velocity = 0.055;
+
+    // wait for user to click before starting
+    waitForClick();
 
     // keep playing until game over
     while (lives > 0 && bricks > 0)
@@ -113,7 +115,7 @@ int main(void)
             y_velocity = -y_velocity;
         else if ((getY(ball) + 2*RADIUS) >= HEIGHT)   // ball hits bottom of window
         {
-            lives -= 1;
+            lives--;
             
             setLocation(ball, WIDTH / 2 - RADIUS, HEIGHT / 2 + RADIUS);
             setLocation(paddle, (WIDTH - PWIDTH) / 2, PADDLE_Y);
@@ -132,13 +134,32 @@ int main(void)
             {
                 removeGWindow(window, hit_object);
                 y_velocity = -y_velocity;
-                num_bricks -= 1;
+                bricks--;
                 char str[3];
-                sprintf(str, "%d", COLS*ROWS - num_bricks);
+                sprintf(str, "%d", COLS*ROWS - bricks);
                 setLabel(label, str);
             }             
         }
     }
+    
+    // win/lose message on game over
+    removeGWindow(window, label);
+    removeGWindow(window, ball);
+    GLabel game_over = newGLabel("");
+    setFont(game_over, "SansSerif-36");
+    if (bricks != 0)
+    {
+        setLabel(game_over, "YOU LOST!");
+        setColor(game_over, "RED");
+    }
+    else
+    {
+        setLabel(game_over, "YOU WON!");
+        setColor(game_over, "BLUE");
+    }
+    setLocation(game_over, (WIDTH - getWidth(game_over)) / 2, (HEIGHT + getHeight(game_over)) / 2);
+    add(window, game_over);
+    
     
     // wait for click before exiting
     waitForClick();
