@@ -2,18 +2,6 @@
 #include <stdlib.h>
 #include <cs50.h>
 
-//  AmEx starts with 34 or 37;
-// MasterCard starts 51, 52, 53, 54, or 55
-//Visa starts with 4
-
-/* verify:
-every other digit *2, starting with second to last digit
-sum product of those digits + sum of other digits
-Sum's last digit is 0 (or % 10 == 0), the number is valid!
-*/
-
-
-
 int main(int argc, char* argv[])
 {
     printf("Enter credit card number for validation: ");
