@@ -1,3 +1,12 @@
+/****************************************************************************
+ * credit.c
+ *
+ * Computer Science 50
+ * Problem Set 1 - Hacker Edition
+ *
+ * Validate credit card number.
+ ***************************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <cs50.h>
