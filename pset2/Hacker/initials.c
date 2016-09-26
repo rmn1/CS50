@@ -11,7 +11,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <stdlib.h>
- 
+
 int main(void)
 {
     // get name from user
@@ -19,7 +19,9 @@ int main(void)
     char* name = malloc(128*sizeof(char));
     fgets (name, 128, stdin);
 
-    for (int i = 0; i < strlen(name); i++)
+    printf("%c", toupper(name[0]));
+
+    for (int i = 1; i < strlen(name); i++)
     {
         if (name[i] == ' ')
         {
