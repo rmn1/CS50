@@ -21,7 +21,7 @@ int main(void)
 
     printf("%c", toupper(name[0]));
 
-    for (int i = 1; i < strlen(name); i++)
+    for (int i = 1, n = strlen(name); i < n; i++)
     {
         if (name[i] == ' ')
         {
